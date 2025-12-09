@@ -7,11 +7,11 @@ import { useState, useEffect, useRef } from 'react';
 import GameLayout from '@/components/GameLayout';
 
 export default function ReactionTimeTest() {
-  const [gameState, setGameState] = useState('start');
-  const [attempts, setAttempts] = useState([]);
-  const [currentTime, setCurrentTime] = useState(null);
-  const startTimeRef = useRef(null);
-  const timeoutRef = useRef(null);
+  const [gameState, setGameState] = useState<'start' | 'waiting' | 'ready' | 'tooSoon' | 'clicked' | 'results'>('start');
+  const [attempts, setAttempts] = useState<number[]>([]);
+  const [currentTime, setCurrentTime] = useState<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const startTest = () => {
     setGameState('waiting');
@@ -27,10 +27,12 @@ export default function ReactionTimeTest() {
     if (gameState === 'start') {
       startTest();
     } else if (gameState === 'waiting') {
-      clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       setGameState('tooSoon');
     } else if (gameState === 'ready') {
-      const reactionTime = Date.now() - startTimeRef.current;
+      const reactionTime = Date.now() - (startTimeRef.current || 0);
       setCurrentTime(reactionTime);
       const newAttempts = [...attempts, reactionTime];
       setAttempts(newAttempts);
@@ -99,101 +101,101 @@ export default function ReactionTimeTest() {
       seoContent={seoContent}
     >
       <div 
-        className={`h-full ${getBackgroundColor()} flex flex-col items-center justify-center transition-all duration-300 cursor-pointer rounded-3xl min-h-[600px]`}
+        className={`h-full ${getBackgroundColor()} flex flex-col items-center justify-center transition-all duration-300 cursor-pointer rounded-3xl min-h-[600px] p-4 sm:p-8`}
         onClick={handleClick}
       >
         <div className="text-center text-white px-4">
           {gameState === 'start' && (
             <>
-              <div className="mb-8">
-                <svg className="w-32 h-32 mx-auto mb-6" viewBox="0 0 100 100" fill="none">
+              <div className="mb-6 sm:mb-8">
+                <svg className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6" viewBox="0 0 100 100" fill="none">
                   <path d="M50 10 L70 30 L50 50 L30 30 Z M50 50 L70 70 L50 90 L30 70 Z" fill="white" opacity="0.9"/>
                 </svg>
               </div>
-              <h1 className="text-6xl font-bold mb-6">Reaction Time Test</h1>
-              <p className="text-2xl mb-4 opacity-90">
+              <h1 className="text-4xl sm:text-6xl font-bold mb-4 sm:mb-6">Reaction Time Test</h1>
+              <p className="text-lg sm:text-2xl mb-3 sm:mb-4 opacity-90">
                 When the red box turns green, click as quickly as you can.
               </p>
-              <p className="text-xl opacity-75">Click anywhere to start.</p>
+              <p className="text-base sm:text-xl opacity-75">Click anywhere to start.</p>
             </>
           )}
 
           {gameState === 'waiting' && (
             <>
-              <div className="mb-8">
-                <div className="flex justify-center gap-3 mb-8">
-                  <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
-                  <div className="w-4 h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-4 h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div className="mb-6 sm:mb-8">
+                <div className="flex justify-center gap-3 mb-6 sm:mb-8">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full animate-pulse"></div>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                 </div>
               </div>
-              <h1 className="text-7xl font-bold">Wait for green</h1>
+              <h1 className="text-5xl sm:text-7xl font-bold">Wait for green</h1>
             </>
           )}
 
           {gameState === 'ready' && (
             <>
-              <div className="mb-8">
-                <div className="flex justify-center gap-3 mb-8">
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
-                  <div className="w-4 h-4 bg-white rounded-full"></div>
+              <div className="mb-6 sm:mb-8">
+                <div className="flex justify-center gap-3 mb-6 sm:mb-8">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white rounded-full"></div>
                 </div>
               </div>
-              <h1 className="text-8xl font-bold">Click!</h1>
+              <h1 className="text-6xl sm:text-8xl font-bold">Click!</h1>
             </>
           )}
 
           {gameState === 'tooSoon' && (
             <>
-              <div className="mb-8">
-                <svg className="w-24 h-24 mx-auto" viewBox="0 0 100 100" fill="none">
+              <div className="mb-6 sm:mb-8">
+                <svg className="w-20 h-20 sm:w-24 sm:h-24 mx-auto" viewBox="0 0 100 100" fill="none">
                   <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="4" fill="none"/>
                   <text x="50" y="65" textAnchor="middle" fill="white" fontSize="48" fontWeight="bold">!</text>
                 </svg>
               </div>
-              <h1 className="text-6xl font-bold mb-6">Too soon!</h1>
-              <p className="text-2xl opacity-90">Click to try again.</p>
+              <h1 className="text-4xl sm:text-6xl font-bold mb-4 sm:mb-6">Too soon!</h1>
+              <p className="text-lg sm:text-2xl opacity-90">Click to try again.</p>
             </>
           )}
 
           {gameState === 'clicked' && currentTime && (
             <>
-              <div className="mb-8">
-                <svg className="w-24 h-24 mx-auto" viewBox="0 0 100 100" fill="none">
+              <div className="mb-6 sm:mb-8">
+                <svg className="w-20 h-20 sm:w-24 sm:h-24 mx-auto" viewBox="0 0 100 100" fill="none">
                   <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="3" fill="none"/>
                   <path d="M50 20 L50 50 L65 65" stroke="white" strokeWidth="3" strokeLinecap="round"/>
                 </svg>
               </div>
-              <h1 className="text-8xl font-bold mb-6">{currentTime} ms</h1>
-              <p className="text-2xl opacity-90 mb-2">
+              <h1 className="text-6xl sm:text-8xl font-bold mb-4 sm:mb-6">{currentTime} ms</h1>
+              <p className="text-xl sm:text-2xl opacity-90 mb-2">
                 Attempt {attempts.length} of 5
               </p>
-              <p className="text-xl opacity-75">Click to keep going</p>
+              <p className="text-base sm:text-xl opacity-75">Click to keep going</p>
             </>
           )}
 
           {gameState === 'results' && (
             <>
-              <div className="mb-8">
-                <svg className="w-24 h-24 mx-auto" viewBox="0 0 100 100" fill="none">
+              <div className="mb-6 sm:mb-8">
+                <svg className="w-20 h-20 sm:w-24 sm:h-24 mx-auto" viewBox="0 0 100 100" fill="none">
                   <path d="M50 10 L60 40 L90 45 L65 65 L72 95 L50 80 L28 95 L35 65 L10 45 L40 40 Z" fill="white"/>
                 </svg>
               </div>
-              <h1 className="text-7xl font-bold mb-8">{averageTime} ms</h1>
-              <p className="text-3xl mb-8 opacity-90">Average Reaction Time</p>
+              <h1 className="text-5xl sm:text-7xl font-bold mb-6 sm:mb-8">{averageTime} ms</h1>
+              <p className="text-2xl sm:text-3xl mb-6 sm:mb-8 opacity-90">Average Reaction Time</p>
               
-              <div className="mb-8 space-y-2">
-                <p className="text-xl opacity-75">All attempts:</p>
+              <div className="mb-6 sm:mb-8 space-y-2">
+                <p className="text-lg sm:text-xl opacity-75">All attempts:</p>
                 {attempts.map((time, index) => (
-                  <p key={index} className="text-lg opacity-60">
+                  <p key={index} className="text-base sm:text-lg opacity-60">
                     Attempt {index + 1}: {time} ms
                   </p>
                 ))}
               </div>
               
               <button 
-                className="px-8 py-4 bg-white text-purple-600 rounded-xl font-bold text-xl hover:bg-opacity-90 transition mt-4"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-purple-600 rounded-xl font-bold text-lg sm:text-xl hover:bg-opacity-90 transition"
                 onClick={(e) => {
                   e.stopPropagation();
                   setAttempts([]);
@@ -208,12 +210,12 @@ export default function ReactionTimeTest() {
         </div>
 
         {attempts.length > 0 && gameState !== 'results' && (
-          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2">
+          <div className="absolute bottom-16 sm:bottom-24 left-1/2 transform -translate-x-1/2">
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5].map((num) => (
                 <div
                   key={num}
-                  className={`w-3 h-3 rounded-full ${
+                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${
                     num <= attempts.length ? 'bg-white' : 'bg-white/30'
                   }`}
                 />
