@@ -4,6 +4,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 type ConsentPreferences = {
   necessary: boolean;
@@ -164,12 +165,12 @@ export default function CookieConsent() {
                     We use cookies to enhance your experience, save your game progress, 
                     and analyze site traffic. You can choose which cookies to accept.
                   </p>
-                  <a 
-                    href="/privacy-policy" 
+                  <Link 
+                    href="/privacy" 
                     className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     Read our Privacy Policy →
-                  </a>
+                  </Link>
                 </div>
 
                 {/* Buttons */}
@@ -380,4 +381,3 @@ const saveScore = (score: number) => {
   }
 };
 */
-
