@@ -1,85 +1,134 @@
 // ============================================
 // FILE: app/page.tsx
 // ============================================
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useCookieConsent } from '@/hooks/useCookieConsent';
+
+interface Game {
+  name: string;
+  desc: string;
+  icon: string;
+  color: string;
+  href: string;
+  scoreKey: string;
+  defaultText: string;
+  formatScore: (value: string) => string;
+}
 
 export default function HomePage() {
-  const games = [
+  const { canUseFunctional } = useCookieConsent();
+  const [scores, setScores] = useState<Record<string, string>>({});
+
+  const games: Game[] = [
     { 
       name: 'Reaction Time', 
       desc: 'Test your reflexes', 
       icon: '⚡',
       color: 'from-yellow-400 to-orange-500',
-      avg: '234ms',
-      href: '/games/reaction'
+      href: '/games/reaction',
+      scoreKey: 'best-score-reaction',
+      defaultText: '---',
+      formatScore: (val) => `${val}ms`
     },
     { 
       name: 'Aim Trainer', 
       desc: 'Precision clicking', 
       icon: '🎯',
       color: 'from-red-400 to-pink-500',
-      avg: '85%',
-      href: '/games/aim-trainer'
+      href: '/games/aim-trainer',
+      scoreKey: 'best-score-aim',
+      defaultText: '---',
+      formatScore: (val) => `${val}%`
     },
     { 
       name: 'N-Back Test', 
       desc: 'Working memory challenge', 
       icon: '🧠',
       color: 'from-blue-400 to-indigo-500',
-      avg: '75%',
-      href: '/games/nback-test'
+      href: '/games/nback-test',
+      scoreKey: 'best-nback-level',
+      defaultText: '---',
+      formatScore: (val) => `${val}-Back`
     },
     { 
       name: 'Simon Says', 
       desc: 'Repeat color sequences', 
       icon: '🎵',
       color: 'from-purple-400 to-indigo-500',
-      avg: '12 levels',
-      href: '/games/simon-says'
+      href: '/games/simon-says',
+      scoreKey: 'best-level-simon',
+      defaultText: '---',
+      formatScore: (val) => `Level ${val}`
     },
     { 
       name: 'Color Blind Test', 
       desc: 'Ishihara test plates', 
       icon: '👁️',
       color: 'from-indigo-400 to-purple-500',
-      avg: 'Normal',
-      href: '/games/colorblind-test'
+      href: '/games/colorblind-test',
+      scoreKey: 'colorblind-result',
+      defaultText: '---',
+      formatScore: (val) => val === '1' ? 'Normal' : 'Completed'
     },
     { 
       name: 'Memory Test', 
       desc: 'Visual patterns', 
       icon: '🧠',
       color: 'from-purple-400 to-indigo-500',
-      avg: '8 tiles',
-      href: '/games/visual-memory'
+      href: '/games/visual-memory',
+      scoreKey: 'best-level-visual',
+      defaultText: '---',
+      formatScore: (val) => `Level ${val}`
     },
     { 
       name: 'Typing Speed', 
       desc: 'Words per minute', 
       icon: '⌨️',
       color: 'from-blue-400 to-cyan-500',
-      avg: '67 WPM',
-      href: '/games/typing-test'
+      href: '/games/typing-test',
+      scoreKey: 'best-wpm-typing',
+      defaultText: '---',
+      formatScore: (val) => `${val} WPM`
     },
     { 
       name: 'Number Memory', 
       desc: 'Remember sequences', 
       icon: '🔢',
       color: 'from-green-400 to-emerald-500',
-      avg: '8 digits',
-      href: '/games/number-memory'
+      href: '/games/number-memory',
+      scoreKey: 'best-digits-number',
+      defaultText: '---',
+      formatScore: (val) => `${val} digits`
     },
     { 
       name: 'Precision Click', 
       desc: 'Perfect timing challenge', 
       icon: '🎯',
       color: 'from-purple-400 to-pink-400',
-      avg: 'Level 8',
-      href: '/games/precision-click'
+      href: '/games/precision-click',
+      scoreKey: 'best-level-precision',
+      defaultText: '---',
+      formatScore: (val) => `Level ${val}`
     },
   ];
+
+  useEffect(() => {
+    if (canUseFunctional) {
+      const loadedScores: Record<string, string> = {};
+      games.forEach(game => {
+        const saved = localStorage.getItem(game.scoreKey);
+        if (saved) {
+          loadedScores[game.scoreKey] = saved;
+        }
+      });
+      setScores(loadedScores);
+    }
+  }, [canUseFunctional]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -108,33 +157,13 @@ export default function HomePage() {
             Track your progress and compete globally.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-lg shadow-lg shadow-purple-500/30 transition transform hover:scale-105">
-              Start Testing →
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-lg border border-white/20 transition">
-              View Stats
-            </button>
-          </div>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 max-w-4xl mx-auto">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-            <div className="text-4xl mb-2">👥</div>
-            <div className="text-3xl font-bold text-white mb-1">2.6M+</div>
-            <div className="text-white/60 text-sm">Active Players</div>
-          </div>
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-            <div className="text-4xl mb-2">🏆</div>
-            <div className="text-3xl font-bold text-white mb-1">15M+</div>
-            <div className="text-white/60 text-sm">Tests Taken</div>
-          </div>
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-            <div className="text-4xl mb-2">📈</div>
-            <div className="text-3xl font-bold text-white mb-1">23%</div>
-            <div className="text-white/60 text-sm">Avg Improvement</div>
+           {/* CTA Button */}
+          <div className="flex items-center justify-center">
+            <Link href="/games">
+              <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-lg shadow-lg shadow-purple-500/30 transition transform hover:scale-105">
+                Start Testing →
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -160,11 +189,14 @@ export default function HomePage() {
                   <h3 className="text-xl font-bold text-white mb-2">{game.name}</h3>
                   <p className="text-white/60 text-sm mb-4">{game.desc}</p>
                   
-                  {/* Average Score */}
+                  {/* Best Score */}
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-white/40">Your best</span>
                     <span className={`text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r ${game.color}`}>
-                      {game.avg}
+                      {scores[game.scoreKey] 
+                        ? game.formatScore(scores[game.scoreKey])
+                        : game.defaultText
+                      }
                     </span>
                   </div>
                 </div>
@@ -177,21 +209,10 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
-        {/* Daily Challenge Banner */}
-        <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl p-8 text-center">
-          <div className="text-4xl mb-3">🎯</div>
-          <h3 className="text-2xl font-bold text-white mb-2">Daily Challenge</h3>
-          <p className="text-white/70 mb-4">
-            Complete today's challenge and compete with 10,000+ players!
-          </p>
-          <button className="px-6 py-3 rounded-lg bg-white text-purple-600 font-semibold hover:bg-white/90 transition">
-            Start Challenge
-          </button>
-        </div>
       </div>
 
       <Footer />
     </div>
   );
 }
+

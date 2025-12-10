@@ -10,13 +10,13 @@ export default function Footer() {
             <Link href="/about" className="hover:text-white transition">
               About
             </Link>
-            <Link href="/privacy" className="hover:text-white transition">
-              Privacy
-            </Link>
             <Link href="/terms" className="hover:text-white transition">
               Terms
             </Link>
-            <Link href="/contact" className="hover:text-white transition">
+            <Link href="/privacy" className="hover:text-white transition">
+              Privacy
+            </Link>
+            <Link href="/forms/contact" className="hover:text-white transition">
               Contact
             </Link>
           </div>
