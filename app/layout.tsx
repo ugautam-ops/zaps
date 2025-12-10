@@ -18,6 +18,7 @@ export default function RootLayout({
       <body>
         {children}
         <CookieConsent />
+        <SpeedInsights />
       </body>
     </html>
   );
