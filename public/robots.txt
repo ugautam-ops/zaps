@@ -1,11 +1,4 @@
-# public/robots.txt
-
 User-agent: *
-Allow: /
+Disallow:
 
-# Disallow admin or sensitive pages (if any)
-Disallow: /api/
-Disallow: /admin/
-
-# Sitemap
 Sitemap: https://zapmind.org/sitemap.xml
