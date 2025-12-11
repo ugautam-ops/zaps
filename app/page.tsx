@@ -23,6 +23,12 @@ interface Game {
 export default function HomePage() {
   const { canUseFunctional } = useCookieConsent();
   const [scores, setScores] = useState<Record<string, string>>({});
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const games: Game[] = [
     { 
@@ -144,7 +150,7 @@ export default function HomePage() {
           </div>
           
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6" style={{ contentVisibility: 'auto' }}>
             Test Your{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
               Cognitive Abilities
@@ -157,7 +163,7 @@ export default function HomePage() {
             Track your progress and compete globally.
           </p>
 
-           {/* CTA Button */}
+          {/* CTA Button */}
           <div className="flex items-center justify-center">
             <Link href="/games">
               <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-lg shadow-lg shadow-purple-500/30 transition transform hover:scale-105">
@@ -215,4 +221,3 @@ export default function HomePage() {
     </div>
   );
 }
-

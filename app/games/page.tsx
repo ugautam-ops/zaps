@@ -9,6 +9,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
 
+export const dynamic = 'force-static'
+
 interface Game {
   name: string;
   desc: string;
