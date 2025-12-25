@@ -1,9 +1,28 @@
 // ============================================
 // FILE: app/terms/page.tsx
 // ============================================
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'Terms of Service for Zap Mind. Read our terms and conditions for using our cognitive tests and brain training games.',
+  openGraph: {
+    title: 'Terms of Service | Zap Mind',
+    description: 'Read the Terms of Service for using Zap Mind cognitive tests and brain games.',
+    url: 'https://zapmind.org/terms',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://zapmind.org/terms',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function TermsPage() {
   return (
@@ -12,7 +31,7 @@ export default function TermsPage() {
 
       <div className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition"
         >
@@ -38,8 +57,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
             <p className="text-white/80 leading-relaxed">
-              By accessing and using Zap Mind (&quot;the Service&quot;), you accept and agree to be bound 
-              by the terms and provisions of this agreement. If you do not agree to these terms, 
+              By accessing and using Zap Mind (&quot;the Service&quot;), you accept and agree to be bound
+              by the terms and provisions of this agreement. If you do not agree to these terms,
               please do not use our Service.
             </p>
           </section>
@@ -47,8 +66,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">2. Description of Service</h2>
             <p className="text-white/80 leading-relaxed">
-              Zap Mind provides cognitive tests and brain games designed to measure and improve 
-              various mental abilities including reaction time, memory, typing speed, and more. 
+              Zap Mind provides cognitive tests and brain games designed to measure and improve
+              various mental abilities including reaction time, memory, typing speed, and more.
               The Service is provided free of charge for personal, non-commercial use.
             </p>
           </section>
@@ -73,12 +92,12 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">4. Intellectual Property</h2>
             <p className="text-white/80 leading-relaxed mb-3">
-              All content on Zap Mind, including but not limited to text, graphics, logos, images, 
-              games, and software, is the property of Zap Mind or its content suppliers and is 
+              All content on Zap Mind, including but not limited to text, graphics, logos, images,
+              games, and software, is the property of Zap Mind or its content suppliers and is
               protected by international copyright laws.
             </p>
             <p className="text-white/80 leading-relaxed">
-              You may not copy, reproduce, distribute, or create derivative works from our content 
+              You may not copy, reproduce, distribute, or create derivative works from our content
               without explicit written permission.
             </p>
           </section>
@@ -89,8 +108,8 @@ export default function TermsPage() {
               When you submit feedback, game ideas, or other content to us:
             </p>
             <ul className="list-disc list-inside text-white/80 ml-4 space-y-2">
-              <li>You grant us a non-exclusive, worldwide, royalty-free license to use, 
-                  modify, and incorporate your submissions</li>
+              <li>You grant us a non-exclusive, worldwide, royalty-free license to use,
+                modify, and incorporate your submissions</li>
               <li>You confirm that your submissions do not violate any third-party rights</li>
               <li>You acknowledge that we are not obligated to use or implement your submissions</li>
             </ul>
@@ -113,9 +132,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">7. Limitation of Liability</h2>
             <p className="text-white/80 leading-relaxed">
-              To the fullest extent permitted by law, Zap Mind shall not be liable for any 
-              indirect, incidental, special, consequential, or punitive damages, or any loss of 
-              profits or revenues, whether incurred directly or indirectly, or any loss of data, 
+              To the fullest extent permitted by law, Zap Mind shall not be liable for any
+              indirect, incidental, special, consequential, or punitive damages, or any loss of
+              profits or revenues, whether incurred directly or indirectly, or any loss of data,
               use, goodwill, or other intangible losses resulting from:
             </p>
             <ul className="list-disc list-inside text-white/80 ml-4 mt-2 space-y-2">
@@ -129,8 +148,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">8. Medical Disclaimer</h2>
             <p className="text-white/80 leading-relaxed">
-              Our cognitive tests are designed for entertainment and general wellness purposes only. 
-              They are not intended to diagnose, treat, cure, or prevent any medical condition. 
+              Our cognitive tests are designed for entertainment and general wellness purposes only.
+              They are not intended to diagnose, treat, cure, or prevent any medical condition.
               Always consult with a qualified healthcare professional for medical advice.
             </p>
           </section>
@@ -138,7 +157,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">9. Privacy</h2>
             <p className="text-white/80 leading-relaxed">
-              Your use of the Service is also governed by our Privacy Policy. Please review our 
+              Your use of the Service is also governed by our Privacy Policy. Please review our
               Privacy Policy to understand our practices.
             </p>
             <Link
@@ -152,8 +171,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">10. Changes to Service</h2>
             <p className="text-white/80 leading-relaxed">
-              We reserve the right to modify, suspend, or discontinue any part of the Service at 
-              any time without notice. We are not liable to you or any third party for any 
+              We reserve the right to modify, suspend, or discontinue any part of the Service at
+              any time without notice. We are not liable to you or any third party for any
               modification, suspension, or discontinuance of the Service.
             </p>
           </section>
@@ -161,8 +180,8 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">11. Changes to Terms</h2>
             <p className="text-white/80 leading-relaxed">
-              We may revise these Terms of Service at any time. The most current version will 
-              always be posted on this page. By continuing to use the Service after changes are 
+              We may revise these Terms of Service at any time. The most current version will
+              always be posted on this page. By continuing to use the Service after changes are
               posted, you agree to be bound by the revised terms.
             </p>
           </section>
@@ -170,7 +189,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">12. Termination</h2>
             <p className="text-white/80 leading-relaxed">
-              We reserve the right to terminate or suspend your access to the Service immediately, 
+              We reserve the right to terminate or suspend your access to the Service immediately,
               without prior notice or liability, for any reason, including breach of these Terms.
             </p>
           </section>
@@ -178,7 +197,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">13. Governing Law</h2>
             <p className="text-white/80 leading-relaxed">
-              These Terms shall be governed by and construed in accordance with applicable laws, 
+              These Terms shall be governed by and construed in accordance with applicable laws,
               without regard to its conflict of law provisions.
             </p>
           </section>
@@ -198,7 +217,7 @@ export default function TermsPage() {
 
           <section className="border-t border-white/20 pt-6 mt-8">
             <p className="text-white/60 text-sm">
-              By using Zap Mind, you acknowledge that you have read, understood, and agree to be 
+              By using Zap Mind, you acknowledge that you have read, understood, and agree to be
               bound by these Terms of Service.
             </p>
           </section>

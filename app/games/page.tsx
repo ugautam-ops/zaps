@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useCookieConsent } from '@/hooks/useCookieConsent';
 
-export const dynamic = 'force-static'
+
 
 interface Game {
   name: string;
@@ -30,9 +30,9 @@ export default function AllGamesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const games: Game[] = [
-    { 
-      name: 'Reaction Time', 
-      desc: 'Test your reflexes', 
+    {
+      name: 'Reaction Time',
+      desc: 'Test your reflexes',
       fullDescription: 'Measure how quickly you can respond to visual stimuli. The average human reaction time is around 250ms.',
       icon: '⚡',
       color: 'from-yellow-400 to-orange-500',
@@ -42,9 +42,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `${val}ms`,
       category: 'reaction'
     },
-    { 
-      name: 'Aim Trainer', 
-      desc: 'Precision clicking', 
+    {
+      name: 'Aim Trainer',
+      desc: 'Precision clicking',
       fullDescription: 'Improve your mouse accuracy and speed. Perfect for gamers looking to enhance their aiming skills.',
       icon: '🎯',
       color: 'from-red-400 to-pink-500',
@@ -54,9 +54,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `${val}%`,
       category: 'precision'
     },
-    { 
-      name: 'N-Back Test', 
-      desc: 'Working memory challenge', 
+    {
+      name: 'N-Back Test',
+      desc: 'Working memory challenge',
       fullDescription: 'Train your working memory by remembering sequences. Used in cognitive research to measure intelligence.',
       icon: '🧠',
       color: 'from-blue-400 to-indigo-500',
@@ -66,9 +66,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `${val}-Back`,
       category: 'memory'
     },
-    { 
-      name: 'Simon Says', 
-      desc: 'Repeat color sequences', 
+    {
+      name: 'Simon Says',
+      desc: 'Repeat color sequences',
       fullDescription: 'Follow the increasingly complex color patterns. A classic test of short-term memory and attention.',
       icon: '🎵',
       color: 'from-purple-400 to-indigo-500',
@@ -78,9 +78,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `Level ${val}`,
       category: 'memory'
     },
-    { 
-      name: 'Color Blind Test', 
-      desc: 'Ishihara test plates', 
+    {
+      name: 'Color Blind Test',
+      desc: 'Ishihara test plates',
       fullDescription: 'Check for color vision deficiencies using scientifically validated Ishihara plates.',
       icon: '👁️',
       color: 'from-indigo-400 to-purple-500',
@@ -90,9 +90,9 @@ export default function AllGamesPage() {
       formatScore: (val) => val === '1' ? 'Normal' : 'Completed',
       category: 'perception'
     },
-    { 
-      name: 'Visual Memory', 
-      desc: 'Remember patterns', 
+    {
+      name: 'Visual Memory',
+      desc: 'Remember patterns',
       fullDescription: 'Test your ability to remember and recall visual patterns. Starts easy and gets progressively harder.',
       icon: '🧠',
       color: 'from-purple-400 to-indigo-500',
@@ -102,9 +102,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `Level ${val}`,
       category: 'memory'
     },
-    { 
-      name: 'Typing Speed', 
-      desc: 'Words per minute', 
+    {
+      name: 'Typing Speed',
+      desc: 'Words per minute',
       fullDescription: 'Measure your typing speed and accuracy. Improve your WPM and become more productive.',
       icon: '⌨️',
       color: 'from-blue-400 to-cyan-500',
@@ -114,9 +114,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `${val} WPM`,
       category: 'reaction'
     },
-    { 
-      name: 'Number Memory', 
-      desc: 'Remember sequences', 
+    {
+      name: 'Number Memory',
+      desc: 'Remember sequences',
       fullDescription: 'How many digits can you remember? Test and train your numerical memory capacity.',
       icon: '🔢',
       color: 'from-green-400 to-emerald-500',
@@ -126,9 +126,9 @@ export default function AllGamesPage() {
       formatScore: (val) => `${val} digits`,
       category: 'memory'
     },
-    { 
-      name: 'Precision Click', 
-      desc: 'Perfect timing challenge', 
+    {
+      name: 'Precision Click',
+      desc: 'Perfect timing challenge',
       fullDescription: 'Click when both moving balls are inside the target. Tests coordination and timing precision.',
       icon: '🎯',
       color: 'from-purple-400 to-pink-400',
@@ -148,8 +148,8 @@ export default function AllGamesPage() {
     { id: 'perception', name: 'Perception', icon: '👁️' },
   ];
 
-  const filteredGames = selectedCategory === 'all' 
-    ? games 
+  const filteredGames = selectedCategory === 'all'
+    ? games
     : games.filter(game => game.category === selectedCategory);
 
   useEffect(() => {
@@ -176,7 +176,7 @@ export default function AllGamesPage() {
             All Cognitive Tests
           </h1>
           <p className="text-lg text-white/70 max-w-2xl mx-auto">
-            Challenge yourself with our collection of brain games and cognitive tests. 
+            Challenge yourself with our collection of brain games and cognitive tests.
             Track your performance and see how you improve over time.
           </p>
         </div>
@@ -187,11 +187,10 @@ export default function AllGamesPage() {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-5 py-2.5 rounded-lg font-medium transition-all ${
-                selectedCategory === category.id
+              className={`px-5 py-2.5 rounded-lg font-medium transition-all ${selectedCategory === category.id
                   ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
                   : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
-              }`}
+                }`}
             >
               <span className="mr-2">{category.icon}</span>
               {category.name}
@@ -239,7 +238,7 @@ export default function AllGamesPage() {
             >
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
-              
+
               {/* Content */}
               <div className="relative">
                 {/* Icon and Badge */}
@@ -254,12 +253,12 @@ export default function AllGamesPage() {
 
                 <h3 className="text-xl font-bold text-white mb-2">{game.name}</h3>
                 <p className="text-white/60 text-sm mb-4">{game.fullDescription}</p>
-                
+
                 {/* Best Score */}
                 <div className="flex items-center justify-between pt-4 border-t border-white/10">
                   <span className="text-xs text-white/40">Your best</span>
                   <span className={`text-sm font-semibold text-transparent bg-clip-text bg-gradient-to-r ${game.color}`}>
-                    {scores[game.scoreKey] 
+                    {scores[game.scoreKey]
                       ? game.formatScore(scores[game.scoreKey])
                       : game.defaultText
                     }

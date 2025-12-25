@@ -1,18 +1,37 @@
 // ============================================
-// FILE: app/terms/page.tsx
+// FILE: app/privacy/page.tsx
 // ============================================
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-export default function TermsPage() {
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'Privacy Policy for Zap Mind. Learn how we collect, use, and protect your data when using our cognitive tests and brain games.',
+  openGraph: {
+    title: 'Privacy Policy | Zap Mind',
+    description: 'Read our Privacy Policy to understand how we handle your data.',
+    url: 'https://zapmind.org/privacy',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://zapmind.org/privacy',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
       <Navbar />
 
       <div className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition"
         >
@@ -24,9 +43,9 @@ export default function TermsPage() {
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="text-6xl mb-4">📜</div>
+          <div className="text-6xl mb-4">🔒</div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Terms of Service
+            Privacy Policy
           </h1>
           <p className="text-lg text-white/70">
             Last updated: December 2024
@@ -36,157 +55,111 @@ export default function TermsPage() {
         {/* Content */}
         <div className="space-y-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
             <p className="text-white/80 leading-relaxed">
-              By accessing and using Zap Mind (&quot;the Service&quot;), you accept and agree to be bound 
-              by the terms and provisions of this agreement. If you do not agree to these terms, 
-              please do not use our Service.
+              At Zap Mind, we are committed to protecting your privacy. This Privacy Policy explains
+              how we collect, use, and safeguard your information when you use our cognitive tests
+              and brain training games.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">2. Description of Service</h2>
-            <p className="text-white/80 leading-relaxed">
-              Zap Mind provides cognitive tests and brain games designed to measure and improve 
-              various mental abilities including reaction time, memory, typing speed, and more. 
-              The Service is provided free of charge for personal, non-commercial use.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">3. User Responsibilities</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">2. Information We Collect</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-semibold text-white mb-2">You agree to:</h3>
-                <ul className="list-disc list-inside text-white/80 ml-4 space-y-2">
-                  <li>Use the Service in compliance with all applicable laws and regulations</li>
-                  <li>Not use the Service for any unlawful or prohibited purpose</li>
-                  <li>Not attempt to gain unauthorized access to any part of the Service</li>
-                  <li>Not interfere with or disrupt the Service or servers</li>
-                  <li>Not use automated systems or bots to access the Service</li>
-                  <li>Not transmit any viruses, malware, or harmful code</li>
-                </ul>
+                <h3 className="text-lg font-semibold text-white mb-2">Local Storage Data</h3>
+                <p className="text-white/80 leading-relaxed">
+                  Your game scores and progress are stored locally in your browser using localStorage.
+                  This data never leaves your device and is not transmitted to our servers.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">Analytics Data</h3>
+                <p className="text-white/80 leading-relaxed">
+                  We may use analytics services to collect anonymous usage data such as page views,
+                  time spent on pages, and browser type. This helps us improve our services.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">Contact Form Data</h3>
+                <p className="text-white/80 leading-relaxed">
+                  When you submit a contact form, we collect your name, email, and message content
+                  solely to respond to your inquiry.
+                </p>
               </div>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Intellectual Property</h2>
-            <p className="text-white/80 leading-relaxed mb-3">
-              All content on Zap Mind, including but not limited to text, graphics, logos, images, 
-              games, and software, is the property of Zap Mind or its content suppliers and is 
-              protected by international copyright laws.
-            </p>
+            <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Your Information</h2>
+            <ul className="list-disc list-inside text-white/80 ml-4 space-y-2">
+              <li>To provide and maintain our services</li>
+              <li>To respond to your inquiries and support requests</li>
+              <li>To improve and optimize our website and games</li>
+              <li>To detect and prevent fraud or abuse</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Cookies</h2>
             <p className="text-white/80 leading-relaxed">
-              You may not copy, reproduce, distribute, or create derivative works from our content 
-              without explicit written permission.
+              We use cookies to remember your preferences (such as cookie consent) and to analyze
+              website traffic. You can control cookies through your browser settings.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">5. User-Generated Content</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">5. Data Security</h2>
+            <p className="text-white/80 leading-relaxed">
+              We implement appropriate security measures to protect your data. However, no method
+              of transmission over the internet is 100% secure. We strive to use commercially
+              acceptable means to protect your information.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">6. Third-Party Services</h2>
+            <p className="text-white/80 leading-relaxed">
+              Our website may contain links to third-party sites. We are not responsible for the
+              privacy practices of these external sites. We encourage you to read their privacy policies.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">7. Children&apos;s Privacy</h2>
+            <p className="text-white/80 leading-relaxed">
+              Our services are not directed to children under 13. We do not knowingly collect
+              personal information from children. If you believe we have collected data from a
+              child, please contact us immediately.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">8. Your Rights</h2>
             <p className="text-white/80 leading-relaxed mb-3">
-              When you submit feedback, game ideas, or other content to us:
+              Depending on your location, you may have the following rights:
             </p>
             <ul className="list-disc list-inside text-white/80 ml-4 space-y-2">
-              <li>You grant us a non-exclusive, worldwide, royalty-free license to use, 
-                  modify, and incorporate your submissions</li>
-              <li>You confirm that your submissions do not violate any third-party rights</li>
-              <li>You acknowledge that we are not obligated to use or implement your submissions</li>
+              <li>Access to your personal data</li>
+              <li>Correction of inaccurate data</li>
+              <li>Deletion of your data</li>
+              <li>Objection to data processing</li>
+              <li>Data portability</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">6. Disclaimer of Warranties</h2>
-            <p className="text-white/80 leading-relaxed mb-3">
-              THE SERVICE IS PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND:
-            </p>
-            <ul className="list-disc list-inside text-white/80 ml-4 space-y-2">
-              <li>We do not guarantee that the Service will be uninterrupted or error-free</li>
-              <li>We do not guarantee the accuracy or reliability of test results</li>
-              <li>The tests are for entertainment and educational purposes only</li>
-              <li>Test results should not be used for medical or professional diagnosis</li>
-              <li>We are not responsible for decisions made based on test results</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">7. Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">9. Changes to This Policy</h2>
             <p className="text-white/80 leading-relaxed">
-              To the fullest extent permitted by law, Zap Mind shall not be liable for any 
-              indirect, incidental, special, consequential, or punitive damages, or any loss of 
-              profits or revenues, whether incurred directly or indirectly, or any loss of data, 
-              use, goodwill, or other intangible losses resulting from:
-            </p>
-            <ul className="list-disc list-inside text-white/80 ml-4 mt-2 space-y-2">
-              <li>Your use or inability to use the Service</li>
-              <li>Any unauthorized access to or use of our servers</li>
-              <li>Any interruption or cessation of the Service</li>
-              <li>Any bugs, viruses, or other harmful code</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">8. Medical Disclaimer</h2>
-            <p className="text-white/80 leading-relaxed">
-              Our cognitive tests are designed for entertainment and general wellness purposes only. 
-              They are not intended to diagnose, treat, cure, or prevent any medical condition. 
-              Always consult with a qualified healthcare professional for medical advice.
+              We may update this Privacy Policy from time to time. We will notify you of any
+              changes by posting the new policy on this page with an updated revision date.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">9. Privacy</h2>
-            <p className="text-white/80 leading-relaxed">
-              Your use of the Service is also governed by our Privacy Policy. Please review our 
-              Privacy Policy to understand our practices.
-            </p>
-            <Link
-              href="/privacy"
-              className="inline-block mt-3 text-purple-400 hover:text-purple-300 transition underline"
-            >
-              Read Privacy Policy →
-            </Link>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">10. Changes to Service</h2>
-            <p className="text-white/80 leading-relaxed">
-              We reserve the right to modify, suspend, or discontinue any part of the Service at 
-              any time without notice. We are not liable to you or any third party for any 
-              modification, suspension, or discontinuance of the Service.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">11. Changes to Terms</h2>
-            <p className="text-white/80 leading-relaxed">
-              We may revise these Terms of Service at any time. The most current version will 
-              always be posted on this page. By continuing to use the Service after changes are 
-              posted, you agree to be bound by the revised terms.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">12. Termination</h2>
-            <p className="text-white/80 leading-relaxed">
-              We reserve the right to terminate or suspend your access to the Service immediately, 
-              without prior notice or liability, for any reason, including breach of these Terms.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">13. Governing Law</h2>
-            <p className="text-white/80 leading-relaxed">
-              These Terms shall be governed by and construed in accordance with applicable laws, 
-              without regard to its conflict of law provisions.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-4">14. Contact Information</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">10. Contact Us</h2>
             <p className="text-white/80 leading-relaxed mb-4">
-              If you have any questions about these Terms of Service, please contact us:
+              If you have questions about this Privacy Policy, please contact us:
             </p>
             <Link
               href="/forms/contact"
@@ -198,8 +171,7 @@ export default function TermsPage() {
 
           <section className="border-t border-white/20 pt-6 mt-8">
             <p className="text-white/60 text-sm">
-              By using Zap Mind, you acknowledge that you have read, understood, and agree to be 
-              bound by these Terms of Service.
+              By using Zap Mind, you acknowledge that you have read and understood this Privacy Policy.
             </p>
           </section>
         </div>

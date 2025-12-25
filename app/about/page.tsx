@@ -1,11 +1,33 @@
 // ============================================
 // FILE: app/about/page.tsx
 // ============================================
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const dynamic = 'force-static';
+
+export const metadata: Metadata = {
+  title: 'About Zap Mind - Our Mission & Story',
+  description: 'Learn about Zap Mind, our mission to make cognitive testing accessible and fun for everyone. Discover our science-based brain games and values.',
+  openGraph: {
+    title: 'About Zap Mind - Our Mission & Story',
+    description: 'Learn about Zap Mind and our mission to make cognitive testing accessible and fun for everyone.',
+    url: 'https://zapmind.org/about',
+    type: 'website',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About Zap Mind' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Zap Mind',
+    description: 'Our mission to make cognitive testing accessible and fun.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://zapmind.org/about',
+  },
+};
 
 export default function AboutPage() {
   return (
@@ -14,7 +36,7 @@ export default function AboutPage() {
 
       <div className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Back Button */}
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition"
         >
@@ -44,13 +66,13 @@ export default function AboutPage() {
               Our Mission
             </h2>
             <p className="text-white/80 leading-relaxed mb-4">
-              Zap Mind was created with a simple goal: to make cognitive testing accessible, 
-              engaging, and fun for everyone. We believe that understanding and improving your 
+              Zap Mind was created with a simple goal: to make cognitive testing accessible,
+              engaging, and fun for everyone. We believe that understanding and improving your
               mental abilities should be easy, interactive, and backed by science.
             </p>
             <p className="text-white/80 leading-relaxed">
-              Whether you&apos;re a gamer looking to improve reaction time, a student wanting to 
-              enhance memory, or simply curious about your cognitive abilities, we&apos;ve got 
+              Whether you&apos;re a gamer looking to improve reaction time, a student wanting to
+              enhance memory, or simply curious about your cognitive abilities, we&apos;ve got
               the perfect tests for you.
             </p>
           </section>
@@ -108,18 +130,18 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-white/80 leading-relaxed mb-4">
-              Zap Mind started as a small project to help people understand their cognitive 
-              abilities better. We noticed that most cognitive tests were either too academic, 
+              Zap Mind started as a small project to help people understand their cognitive
+              abilities better. We noticed that most cognitive tests were either too academic,
               too expensive, or simply not engaging enough.
             </p>
             <p className="text-white/80 leading-relaxed mb-4">
-              We set out to change that by creating a platform that combines scientific accuracy 
-              with gamification. The result? A collection of tests that are both valid and fun 
+              We set out to change that by creating a platform that combines scientific accuracy
+              with gamification. The result? A collection of tests that are both valid and fun
               to take.
             </p>
             <p className="text-white/80 leading-relaxed">
-              Today, millions of users worldwide use Zap Mind to test and train their cognitive 
-              abilities. We&apos;re constantly adding new tests and features based on user feedback 
+              Today, millions of users worldwide use Zap Mind to test and train their cognitive
+              abilities. We&apos;re constantly adding new tests and features based on user feedback
               and the latest research.
             </p>
           </section>
